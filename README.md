@@ -35,7 +35,7 @@ Na het inloggen zie je een orderbord (Open → Geannuleerd). Je kunt:
 - een bestelling openen en terug naar het overzicht
 - naar **Over** navigeren en daarna weer bestellingen ophalen
 
-Aanmelden gaat via de API. Bestellingen vragen daarna een Bearer-token.
+Aanmelden gaat via de API. Het token blijft in de browser (niet op het scherm); bestellingen vragen dat token daarna mee.
 
 ## Installeren (Windows of Mac)
 
@@ -107,14 +107,14 @@ e-mail:     inkoop@leverportaal.nl
 wachtwoord: Acceptatie-2026
 ```
 
-De API geeft bij succes een token terug. Dat token moet daarna mee op `/api/orders`.
+Vul die gegevens in op het inlogscherm. De API geeft bij succes een token terug; de SPA bewaart dat zelf. Je ziet het token niet in de UI.
 
 ### Korte check vóór je gaat debuggen
 
 | Check | Verwacht |
 |-------|----------|
 | Swagger opent | ja |
-| Inlogscherm op :5173 | ja, gele warning met demo-account |
+| Inlogscherm op :5173 | ja, lege e-mail- en wachtwoordvelden |
 | Na “Aanmelden” een bord vol 12 bestellingen | **nee** — dat is de challenge |
 
 Geen Vite-proxy: de SPA praat rechtstreeks met `http://localhost:5080/api`.

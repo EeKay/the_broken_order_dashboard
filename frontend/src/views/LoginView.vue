@@ -4,8 +4,8 @@ import { useRouter } from "vue-router";
 import { describeApiError, loginApi, setAuthToken } from "../services/api";
 
 const router = useRouter();
-const email = ref("inkoop@leverportaal.nl");
-const password = ref("Acceptatie-2026");
+const email = ref("");
+const password = ref("");
 const error = ref<string | null>(null);
 const submitting = ref(false);
 
@@ -31,11 +31,6 @@ async function login() {
     <p class="lede">
       Bestellingen van hulpmiddelen en verbruiksmateriaal voor zorglocaties.
     </p>
-    <aside class="warning" role="status">
-      <strong>Acceptatie-omgeving.</strong>
-      Geen productiedata. Demo-account (de API geeft het token terug):
-      <code>inkoop@leverportaal.nl</code> / <code>Acceptatie-2026</code>
-    </aside>
     <p v-if="error" class="error">{{ error }}</p>
     <label>
       E-mail
