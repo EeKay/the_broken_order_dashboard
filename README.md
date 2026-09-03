@@ -33,7 +33,10 @@ De bugs zitten in de bestaande code. **Niet de hele app herschrijven.** Vind, be
 
 **API:** Swagger op [http://localhost:5080/swagger](http://localhost:5080/swagger) — login en orders los van de SPA.
 
-Starten mag in de VS Code-terminal (`dotnet run` / `npm run dev`). **Run and Debug** (F5) is extra, geen vereiste om te starten.
+Starten: twee VS Code-terminals, `dotnet run` en `npm run dev`.
+
+- **.NET (API):** mag in VS Code met **F5** (C# Dev Kit): process start + breakpoints in controllers / `Program.cs`. Vue blijft dan `npm run dev`.
+- **Vue / Pinia:** niet met F5. Debug in **Chrome** — Vue.js DevTools (store), plus Network / Console / Application.
 
 ## Wat er van jullie verwacht wordt
 
@@ -160,7 +163,7 @@ Statuswaarden in JSON (ná een correcte fix): `Pending`, `Processing`, `Shipped`
 
 ## Werkwijze
 
-1. Beide kanten starten. Chrome DevTools (**Network**, **Console**, **Application**), **Vue.js DevTools**, **Swagger**. VS Code voor code en breakpoints.
+1. Beide kanten starten. API: terminal of **F5**. Vue/Pinia: Chrome (**Vue.js DevTools**, Network / Console / Application) plus Swagger.
 2. Reproduceren vóór je code wijzigt. Noteer symptoom, request, response, console.
 3. Frontend en backend **eerst het JSON-contract afstemmen** (namen, enum/string, headers). Niet langs elkaar heen patchen.
 4. Branch vanaf `main`, bijvoorbeeld `fix/debug-challenge`.
