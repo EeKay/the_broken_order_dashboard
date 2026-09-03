@@ -6,15 +6,34 @@ Dit is een **realistische casus** in een gangbare enterprise-stack: een headless
 
 Het is ook een concreet voorbeeld van **starten in een bestaande opzet**. De repo is er al: controllers, een store, een router, een login. Jullie bouwen dit niet opnieuw. Jullie clonen, starten beide kanten, lezen de code, en halen de integratiebugs eruit.
 
-Er zitten **3 kritieke integratie-bugs** in. Het fundament start; het dashboard gedraagt zich daarna niet zoals het hoort.
+Er zitten **3 kritieke integratie-bugs** in. Het fundament start; het dashboard gedraagt zich daarna niet zoals het hoort. De nummers zijn de **volgorde waarin jullie ze tegenkomen** (niet “frontend is altijd 1”).
 
 ## Rollen & taakverdeling
 
-- **Frontend:** verantwoordelijk voor bug 1 in de Vue 3 / Pinia frontend.
-- **Backend:** verantwoordelijk voor bug 2 in de ASP.NET Core 8 Web API.
-- **Samen (integratie):** verantwoordelijk voor bug 3 — het koppelvlak tussen frontend en backend.
+- **Samen (integratie):** bug **1** — het koppelvlak frontend/backend. Dit is wat jullie **eerst** zien (browser vs API).
+- **Frontend:** bug **2** — Vue 3 / Pinia, **nadat** de API-calls in de browser doorkomen.
+- **Backend:** bug **3** — ASP.NET Core 8 Web API, in **dezelfde fase** als bug 2 (Swagger + JSON).
 
 De bugs zitten in de bestaande code. **Niet de hele app herschrijven.** Vind, begrijp, herstel.
+
+## Gereedschap (verplicht)
+
+**IDE:** [Visual Studio Code](https://code.visualstudio.com). Open de map van deze repo. Visual Studio / Rider is niet nodig.
+
+**VS Code-extensies**
+
+- [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (Volar) — `.vue` en TypeScript
+- [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) — C#, breakpoints in de API
+
+**Browser**
+
+- Google Chrome
+- [Vue.js DevTools](https://devtools.vuejs.org/guide/installation.html) — Chrome-extensie, Pinia-inspectie
+- Ingebouwde DevTools: **Network**, **Console**, **Application** (Local Storage, request-headers)
+
+**API:** Swagger op [http://localhost:5080/swagger](http://localhost:5080/swagger) — login en orders los van de SPA.
+
+Starten mag in de VS Code-terminal (`dotnet run` / `npm run dev`). **Run and Debug** (F5) is extra, geen vereiste om te starten.
 
 ## Wat er van jullie verwacht wordt
 
@@ -39,7 +58,7 @@ Aanmelden gaat via de API. Het token blijft in de browser (niet op het scherm); 
 
 ## Installeren (Windows of Mac)
 
-Geen Docker. Geen Visual Studio verplicht. Dezelfde commando’s in PowerShell, Terminal of cmd.
+Geen Docker. Zelfde commando’s in de VS Code-terminal, PowerShell of cmd.
 
 1. **.NET SDK 8 of nieuwer**  
    Download: [dotnet.microsoft.com/download](https://dotnet.microsoft.com/download)  
@@ -141,7 +160,7 @@ Statuswaarden in JSON (ná een correcte fix): `Pending`, `Processing`, `Shipped`
 
 ## Werkwijze
 
-1. Beide kanten starten. Open de browserconsole **en** het Network-tabblad **en** Swagger.
+1. Beide kanten starten. Chrome DevTools (**Network**, **Console**, **Application**), **Vue.js DevTools**, **Swagger**. VS Code voor code en breakpoints.
 2. Reproduceren vóór je code wijzigt. Noteer symptoom, request, response, console.
 3. Frontend en backend **eerst het JSON-contract afstemmen** (namen, enum/string, headers). Niet langs elkaar heen patchen.
 4. Branch vanaf `main`, bijvoorbeeld `fix/debug-challenge`.
