@@ -1,0 +1,25 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# .NET
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Node
+node_modules/
+dist/
+*.local
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
