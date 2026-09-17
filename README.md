@@ -40,7 +40,7 @@ Starten: twee VS Code-terminals, `dotnet run` en `npm run dev`.
 
 ## Wat er van jullie verwacht wordt
 
-1. **Herstel de bugs.** Het dashboard moet functioneel, bugvrij en bruikbaar op desktop én smaller scherm werken: bestellingen laden, status wijzigen, tussen pagina’s navigeren, opnieuw laden.
+1. **Herstel de bugs** tot alle checks in [`ACCEPTANCE.md`](./ACCEPTANCE.md) slagen. Dat document is de **definitie van klaar** (gedrag, geen spoiler van oorzaken).
 2. **Schrijf een postmortem.** Kopieer [`POSTMORTEM-TEMPLATE.md`](./POSTMORTEM-TEMPLATE.md) naar `POSTMORTEM.md` in de root en vul die in.
 3. **Pull Request.** Eén gezamenlijke PR naar `main`, uiterlijk op de afgesproken deadline.
 
@@ -49,6 +49,8 @@ Starten: twee VS Code-terminals, `dotnet run` en `npm run dev`.
 Maandag 09:00 — afgeronde Pull Request inclusief ingevulde `POSTMORTEM.md`.
 
 ## Wat de app zou moeten doen
+
+Korte samenvatting — de meetbare checklist staat in [`ACCEPTANCE.md`](./ACCEPTANCE.md). Loop die **vóór de PR** af (bij start falen meerdere checks; bij oplevering allemaal pass).
 
 Na het inloggen zie je een orderbord (Open → Geannuleerd). Je kunt:
 
@@ -164,16 +166,16 @@ Statuswaarden in JSON (ná een correcte fix): `Pending`, `Processing`, `Shipped`
 ## Werkwijze
 
 1. Beide kanten starten. API: terminal of **F5**. Vue/Pinia: Chrome (**Vue.js DevTools**, Network / Console / Application) plus Swagger.
-2. Reproduceren vóór je code wijzigt. Noteer symptoom, request, response, console.
+2. Open [`ACCEPTANCE.md`](./ACCEPTANCE.md) en noteer welke checks al falen (reproduceren vóór je code wijzigt).
 3. Frontend en backend **eerst het JSON-contract afstemmen** (namen, enum/string, headers). Niet langs elkaar heen patchen.
 4. Branch vanaf `main`, bijvoorbeeld `fix/debug-challenge`.
-5. PR met wat je hersteld hebt en de ingevulde `POSTMORTEM.md`.
+5. Alle acceptatiechecks op pass → PR met herstel + ingevulde `POSTMORTEM.md`.
 
 ## Oplevering
 
 In de PR:
 
-- werkende app (frontend + backend)
+- werkende app: **alle** checks in [`ACCEPTANCE.md`](./ACCEPTANCE.md) op pass
 - `POSTMORTEM.md` (niet alleen de lege template)
 - geen secrets, geen `bin/`, `obj/`, `node_modules/` of `dist/`
 
@@ -183,6 +185,7 @@ In de PR:
 .
 ├── backend/          # ASP.NET Core 8 Web API
 ├── frontend/         # Vue 3 + Vite + TypeScript + Pinia
+├── ACCEPTANCE.md     # definitie van klaar (functionele checks)
 ├── POSTMORTEM-TEMPLATE.md
 └── README.md
 ```
